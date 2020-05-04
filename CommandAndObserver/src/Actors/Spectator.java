@@ -12,7 +12,7 @@ public class Spectator implements Observer{
 	
 	@Override
 	public void update() {
-				
+		System.out.println(this.name + "is updated");
 	}
 
 }

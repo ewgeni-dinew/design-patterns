@@ -2,15 +2,21 @@ package Actors;
 
 import java.util.ArrayList;
 
+import Commands.BaseCommand;
 import Contracts.Observable;
 import Contracts.Observer;
 
 public class Trainee implements Observable{
 	
+	private boolean isLayingDown;
+	private boolean isChanged;
+	
 	private String name;
 	ArrayList<Observer> observers; //this is the collection of all the Spectators
 	
 	public Trainee(String name) {
+		this.isLayingDown = false;
+		this.isChanged = false;
 		this.name = name;
 		this.observers = new ArrayList<Observer>();
 	}
@@ -23,8 +29,8 @@ public class Trainee implements Observable{
 
 	@Override
 	public void clearChanged() {
-		// TODO Auto-generated method stub
 		
+		this.isChanged = false;
 	}
 
 	@Override
@@ -35,8 +41,8 @@ public class Trainee implements Observable{
 
 	@Override
 	public boolean hasChanged() {
-		// TODO Auto-generated method stub
-		return false;
+	
+		return this.isChanged;
 	}
 
 	@Override
@@ -50,9 +56,25 @@ public class Trainee implements Observable{
 
 	@Override
 	public void setChanged() {
-		// TODO Auto-generated method stub
 		
+		this.isChanged = true;	
+		
+		this.notifyObservers();
 	}
 
-	
+	public void executeCommand(BaseCommand command) {
+		
+		if(command.getClass().getName().toString().equals("LayDownCommand") && this.hasChanged()) {
+			this.isLayingDown = true;
+		}
+		else if(command.getClass().getName().toString().equals("StandUpCommand")) {
+			this.isLayingDown = false;
+		}
+		
+		System.out.println(this.name + "is executing command: " + command.getName());
+		
+		this.setChanged();
+		
+		this.clearChanged();
+	}
 }
