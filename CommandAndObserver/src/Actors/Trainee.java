@@ -67,7 +67,7 @@ public class Trainee implements Observable{
 		String commandName = command.getClass().getSimpleName();
 		
 		if(commandName.equals("LayDownCommand") && this.isLayingDown){			
-			System.out.println("Already executed the given command!");
+			System.out.println(this.name + " has already executed the given command!");
 			
 			return;
 		}
