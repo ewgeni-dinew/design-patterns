@@ -12,7 +12,14 @@ public class Spectator implements Observer{
 	
 	@Override
 	public void update() {
-		System.out.println(this.name + "is updated");
+		System.out.println(this.name + " is updated");
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -18,6 +18,12 @@ public class Trainer {
 	public void tellCommand(BaseCommand command) {
 		System.out.println(this.name + " has told the trainee to execute the command: " + command.getName());
 		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		trainee.executeCommand(command);
 	}
 }

@@ -63,15 +63,15 @@ public class Trainee implements Observable{
 	}
 
 	public void executeCommand(BaseCommand command) {
+				
+		System.out.println(this.name + " is executing command: " + command.getName());
 		
-		if(command.getClass().getName().toString().equals("LayDownCommand") && this.hasChanged()) {
-			this.isLayingDown = true;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if(command.getClass().getName().toString().equals("StandUpCommand")) {
-			this.isLayingDown = false;
-		}
-		
-		System.out.println(this.name + "is executing command: " + command.getName());
 		
 		this.setChanged();
 		

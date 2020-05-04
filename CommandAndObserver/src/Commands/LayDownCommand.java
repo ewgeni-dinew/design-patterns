@@ -8,10 +8,6 @@ public class LayDownCommand implements BaseCommand{
 		this.name = "'Lay Down'";
 	}
 	
-	@Override
-	public void executeCommand() {
-	}
-	
 	public String getName() {
 		return this.name;
 	}

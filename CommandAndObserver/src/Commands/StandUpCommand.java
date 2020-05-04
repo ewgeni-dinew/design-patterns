@@ -8,10 +8,6 @@ public class StandUpCommand implements BaseCommand{
 		this.name = "'Stand Up'";
 	}
 	
-	@Override
-	public void executeCommand() {
-	}
-	
 	public String getName() {
 		return this.name;
 	}
