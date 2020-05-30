@@ -42,7 +42,7 @@ public class Mediator implements IMediator{
 		
 		if(message.contains("cat") && this.isChatBotActive) {			
 			this.removeUser(sender);
-			System.out.println("Sender has been removed from chat.");
+			System.out.println("!!! " + sender.getName() + " has been removed from chat.!!!");
 		}
 		else {
 			for(IUser user: this.users) {

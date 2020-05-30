@@ -14,19 +14,31 @@ public class Bot implements IUser {
 	
 	@Override
 	public void receive(String message) {
-		// TODO Auto-generated method stub
-		
+		//bot receives the message but no Console input		
 	}
 
 	@Override
 	public void send(String message) {
-		// TODO Auto-generated method stub
-		
+		if(this.mediator != null) {
+			System.out.println(this.name + " sent: " + message);		
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		    this.mediator.sendMessage(message, this);			
+		}	    
 	}
 
 	@Override
 	public void removeFromMediator() {
-		// TODO Auto-generated method stub
-		
+		this.mediator = null;		
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
 	}
 }

@@ -19,7 +19,13 @@ public class User implements IUser {
 	
 	@Override
 	public void receive(String message) {
-	    System.out.println("--- " + this.name + " received: " + message);		
+		try {
+			Thread.sleep(1000);
+		    System.out.println("--- " + this.name + " received: " + message);		
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -37,4 +43,8 @@ public class User implements IUser {
 		}	    
 	}
 
+	@Override
+	public String getName() {
+		return this.name;
+	}
 }
