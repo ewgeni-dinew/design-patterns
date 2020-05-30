@@ -7,6 +7,10 @@ import Mediator.IMediator;
 
 public class UserFactory implements IFactory {
 
+	public UserFactory() {
+		
+	}
+	
 	@Override
 	public IUser createParticipant(String type, String name, IMediator mediator) throws Exception {
 		if(type.toLowerCase().equals("user")){
