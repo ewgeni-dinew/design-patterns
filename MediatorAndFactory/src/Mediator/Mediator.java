@@ -25,9 +25,16 @@ public class Mediator implements IMediator{
 	@Override
 	public void sendMessage(String message, IUser sender) {
 		for(IUser user: this.users) {
-		      if(user != sender) {
-		        user.receive(message);
-		      }
-		    }		
+		   if(user != sender) {			   
+		       user.receive(message);
+		   }
+		}		
+	}
+
+	@Override
+	public void addMultipleUsers(IUser[] users) {
+		for(IUser user: users) {		
+			this.users.add(user);		
+		}
 	}
 }
