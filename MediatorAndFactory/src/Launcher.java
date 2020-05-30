@@ -1,32 +1,19 @@
 import Actors.IUser;
-import Actors.User;
 import Factory.IFactory;
 import Factory.UserFactory;
 import Mediator.IMediator;
 import Mediator.Mediator;
 
 public class Launcher {
-	/*
-	private static IMediator mediator;
-	private static IFactory factory;
-	
-	public Launcher() {
-		mediator = new Mediator();
-		factory = new UserFactory();
-	}
-	*/
-	
+		
 	public static void main(String[] args) throws Exception {
+		
 		System.out.println("Started application");
 		
 		IMediator mediator = new Mediator();
 		IFactory factory = new UserFactory();
 				
 		try {
-			//IUser ivan = new User("Ivan", mediator);
-			//IUser georgi = new User("Ivan", mediator);
-			//IUser peter = new User("Ivan", mediator);
-
 			IUser ivan = factory.createParticipant("User", "Ivan", mediator);
 			IUser georgi = factory.createParticipant("User", "Georgi", mediator);
 			IUser peter = factory.createParticipant("User", "Peter", mediator);
@@ -37,9 +24,15 @@ public class Launcher {
 			ivan.send("Hi.");
 			ivan.send("Do you hear me?");
 			georgi.send("Hi, Ivan. Yes we do.");
-			peter.send("Hi all.");
-			peter.send("This is not ok");
-		
+			peter.send("Hi all. addBot");
+			peter.send("This is not ok");		
+			
+			ivan.send("cat."); //Ivan is removed from chat
+			
+			ivan.send("Sorry."); //Ivan tries to send message but cannot
+			
+			peter.send("Test."); //Only Georgi receives the message
+			
 		}
 		catch(Exception ex) {
 			System.out.println("An error was encountered: " + ex.getMessage());

@@ -23,4 +23,10 @@ public class Bot implements IUser {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void removeFromMediator() {
+		// TODO Auto-generated method stub
+		
+	}
 }
