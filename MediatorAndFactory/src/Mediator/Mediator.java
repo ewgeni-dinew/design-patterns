@@ -2,23 +2,32 @@ package Mediator;
 
 import java.util.ArrayList;
 
-import Actors.Bot;
 import Actors.IUser;
+import Factory.IFactory;
+import Factory.UserFactory;
 
 public class Mediator implements IMediator{
 
 	private ArrayList<IUser> users;
 	private boolean isChatBotActive;
+	private IFactory factory;
 	
 	public Mediator() {
 		this.users = new ArrayList<IUser>();
 		this.isChatBotActive = false;
+		this.factory = new UserFactory();
 	}
 	
 	@Override
-	public void addUser(IUser user) {
-		this.users.add(user);		
+	public IUser addUser(String type, String name) throws Exception {
+		
+		IUser user = this.factory.createParticipant(type, name, this);
+		
+		this.users.add(user);	
+		
+		return user;
 	}
+		
 
 	@Override
 	public void removeUser(IUser user) {
@@ -27,14 +36,13 @@ public class Mediator implements IMediator{
 	}
 
 	@Override
-	public void sendMessage(String message, IUser sender) {
+	public void sendMessage(String message, IUser sender) throws Exception {
 		
 		//check message
 		if(message.contains("addBot")){
-			IUser bot = new Bot("Bot", this);
 			
 			//add the bot in the chat
-			this.addUser(bot);
+			this.addUser("bot", "Bot");
 			this.isChatBotActive = true;
 			
 			System.out.println("***Chat Bot has been added.***");
@@ -51,12 +59,5 @@ public class Mediator implements IMediator{
 				   }
 				}		
 		}					
-	}
-
-	@Override
-	public void addMultipleUsers(IUser[] users) {
-		for(IUser user: users) {		
-			this.users.add(user);		
-		}
 	}
 }

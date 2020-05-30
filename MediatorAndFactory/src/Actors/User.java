@@ -18,26 +18,18 @@ public class User implements IUser {
 	}
 	
 	@Override
-	public void receive(String message) {
-		try {
-			Thread.sleep(1000);
-		    System.out.println("--- " + this.name + " received: " + message);		
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void receive(String message) throws Exception {
+		
+		Thread.sleep(1000);
+	    System.out.println("--- " + this.name + " received: " + message);	
 	}
 
 	@Override
-	public void send(String message) {
+	public void send(String message) throws Exception {
 		if(this.mediator != null) {
 			System.out.println(this.name + " sent: " + message);		
-			try {
-				Thread.sleep(1500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+			Thread.sleep(1500);
 			
 		    this.mediator.sendMessage(message, this);			
 		}	    

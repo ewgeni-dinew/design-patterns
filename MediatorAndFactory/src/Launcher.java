@@ -1,6 +1,4 @@
 import Actors.IUser;
-import Factory.IFactory;
-import Factory.UserFactory;
 import Mediator.IMediator;
 import Mediator.Mediator;
 
@@ -11,15 +9,11 @@ public class Launcher {
 		System.out.println("Started application");
 		
 		IMediator mediator = new Mediator();
-		IFactory factory = new UserFactory();
 				
 		try {
-			IUser ivan = factory.createParticipant("User", "Ivan", mediator);
-			IUser georgi = factory.createParticipant("User", "Georgi", mediator);
-			IUser peter = factory.createParticipant("User", "Peter", mediator);
-		
-			IUser[] array = new IUser[]{ivan, peter, georgi};
-			mediator.addMultipleUsers(array);
+			IUser ivan = mediator.addUser("User", "Ivan");
+			IUser georgi = mediator.addUser("User", "Georgi");
+			IUser peter = mediator.addUser("User", "Peter");		
 		
 			ivan.send("Hi.");
 			ivan.send("Do you hear me?");

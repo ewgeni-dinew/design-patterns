@@ -3,8 +3,7 @@ package Mediator;
 import Actors.IUser;
 
 public interface IMediator {
-	void addUser(IUser user);
-	void addMultipleUsers(IUser[] users);
+	IUser addUser(String type, String name) throws Exception;
 	void removeUser(IUser user);
-	void sendMessage(String message, IUser user);
+	void sendMessage(String message, IUser user) throws Exception;
 }
