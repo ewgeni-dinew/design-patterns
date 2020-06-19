@@ -18,7 +18,9 @@ public class ForeignHandler extends Handler implements IObservable {
 
 	@Override
 	public void handle(String type) {
-		if(type.toLowerCase() == "foreign") {
+		if(type.toLowerCase().equals("foreign")) {
+			
+			System.out.println("Foreign desk has taken the package");
 			
 			this.state.setState(new WorkState());
 			
@@ -27,6 +29,8 @@ public class ForeignHandler extends Handler implements IObservable {
 			this.state.setState(new RestState());
 		}
 		else {
+			System.out.println("not responsible");
+
 			super.handle(type);
 		}	
 	}

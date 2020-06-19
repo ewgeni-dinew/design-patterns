@@ -10,6 +10,7 @@ public class StateContext {
 	
 	public void setState(IHandlerState state)  
     { 
+		System.out.println("Desk State changed to " + state.getClass().getName());
         this.currentState = state; 
     } 
 	

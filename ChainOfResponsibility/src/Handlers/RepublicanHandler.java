@@ -18,7 +18,10 @@ public class RepublicanHandler extends Handler implements IObservable{
 
 	@Override
 	public void handle(String type) {
-		if(type.toLowerCase() == "republican") {
+		if(type.toLowerCase().equals("republican")) {
+			
+			System.out.println("Republican desk has taken the package");
+
 			this.state.setState(new WorkState());
 			
 			notifyObservers();
@@ -26,6 +29,8 @@ public class RepublicanHandler extends Handler implements IObservable{
 			this.state.setState(new RestState());
 		}
 		else {
+			System.out.println("not responsible");
+
 			super.handle(type);
 		}		
 	}	

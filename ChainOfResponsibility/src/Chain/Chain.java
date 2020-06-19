@@ -14,8 +14,6 @@ public class Chain {
 		
 		String type = requestType.toString();
 		
-		System.out.println(type);
-		
 	    this.chain.handle(type);
 	} 
 }

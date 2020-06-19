@@ -18,7 +18,10 @@ public class PlovdivHandler extends Handler implements IObservable {
 
 	@Override
 	public void handle(String type) {
-		if(type.toLowerCase() == "plovdiv") {
+		if(type.toLowerCase().equals("plovdiv")) {
+			
+			System.out.println("Plovdiv desk has taken the package");
+
 			
 			this.state.setState(new WorkState());
 			
@@ -27,6 +30,7 @@ public class PlovdivHandler extends Handler implements IObservable {
 			this.state.setState(new RestState());
 		}
 		else {
+			System.out.println("not responsible");
 			super.handle(type);
 		}	
 	}
