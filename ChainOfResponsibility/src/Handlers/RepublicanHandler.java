@@ -1,10 +1,15 @@
 package Handlers;
 
+import Handlers.Contracts.IObservable;
+import Handlers.Contracts.IObserver;
+import Handlers.State.RestState;
 import Handlers.State.StateContext;
+import Handlers.State.WorkState;
 
-public class RepublicanHandler extends Handler{
+public class RepublicanHandler extends Handler implements IObservable{
 
 	private StateContext state;
+	private IObserver observer;
 	
 	public RepublicanHandler(Handler handler) {
 		super(handler);
@@ -14,12 +19,25 @@ public class RepublicanHandler extends Handler{
 	@Override
 	public void handle(String type) {
 		if(type.toLowerCase() == "republican") {
-			//handle
+			this.state.setState(new WorkState());
 			
-			//handle state
+			notifyObservers();
+			
+			this.state.setState(new RestState());
 		}
 		else {
 			super.handle(type);
 		}		
 	}	
+	
+	@Override
+	public void addObserver(IObserver observer) {
+		this.observer = observer;
+	}
+
+	@Override
+	public void notifyObservers() {
+		this.observer.update();
+		
+	}
 }

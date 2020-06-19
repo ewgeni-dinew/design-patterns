@@ -1,5 +1,5 @@
 package Handlers.Contracts;
 
-public interface Observer {
+public interface IObserver {
 	void update();
 }
